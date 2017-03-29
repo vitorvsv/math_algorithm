@@ -1,0 +1,186 @@
+<html>
+    <head>
+        <title> Algoritmos matemáticos </title>
+        <meta charset="UTF-8"/>
+    </head>
+    <table>
+        <tr>
+            <td>
+                Selecione um algortimo:
+            </td>
+            <td>
+                <select name="algorithm" id="algorithm">
+                    <option value="1"> Algoritmo 1 - Binário para Decimal (Inteiro)</option>
+                    <option value="2"> Algoritmo 2 - Decimal para Binário (Inteiro)</option>
+                    <option value="3" > Algoritmo 3 - Decimal para Binário (Fracionário)</option>
+                    <option value="4"> Algoritmo 4 - Binário para Decimal (Fracionário)</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Valor de entrada:
+            </td>
+            <td>
+                <input type="text" name="input_value" id="input_value"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Valor de saída:
+            </td>
+            <td>
+                <input type="text" name="output_value" id="output_value">
+            </td>
+        </tr>
+    </table>
+    <input type="button" value="Calcular" onclick="calculate()"/>
+    <input type="button" value="Limpar" onclick="clearInputs()"/>
+
+    <div>
+        <p>
+            Desenvolvido por Vítor Soares Vian.
+
+            Sujestões, melhorias e colaborações <a href="https://github.com/vitorvsv/math_algorithm" target="_blank"> Git-Hub </a>
+        </p>
+    </div>
+
+</html>
+
+<script>
+    function calculate()
+    {
+        var alg = document.getElementById('algorithm').value;
+        var number = document.getElementById('input_value').value;
+
+        if (alg == 1) {
+            algorithm1(number);
+        }
+
+        if (alg == 2) {
+            algorithm2(number);
+        }
+
+        if (alg == 3) {
+            algorithm3(number);
+        }
+
+        if (alg == 4) {
+            algorithm4(number);
+        }
+    }
+
+    function clearInputs() {
+        document.getElementById('input_value').value = '';
+        document.getElementById('output_value').value = '';
+    }
+
+    function algorithm1(number)
+    {
+        var j = number.length - 1;
+        var a = [];
+        var b = [];
+
+        for (var i = 0; i <= j; i++) {
+            a[i] = parseInt(number[i]);
+
+            if (i == 0) {
+                b[i] = a[i];
+            } else {
+                b[i] = (parseInt(a[i]) + (2 * b[i - 1]));
+            }
+        }
+
+        document.getElementById('output_value').value = b[j];
+    }
+
+    function algorithm2(number)
+    {
+        var q = number;
+        var r;
+        var a = [];
+        var n;
+        var k = 0;
+
+        while (q != 0) {
+            n = parseInt(q / 2);
+
+            if (n * 2 == q) {
+                r = 0;
+            } else {
+                r = 1;
+            }
+
+            a[k] = r;
+
+            if (q != 0) {
+                q = n;
+            }
+
+            k++;
+        }
+
+        var binaryNumber = '';
+        for (i = a.length - 1; i >= 0; i--) {
+            binaryNumber += a[i];
+        }
+
+        document.getElementById('output_value').value = binaryNumber;
+    }
+
+    function algorithm3(number)
+    {
+        number = number.replace(',','.');
+
+        var r   = number;
+        var k   = 1;
+        var d   = [];
+        var max = 10;
+
+        while (r != 1)
+        {
+            r = (2 * r);
+
+            if (r >= 1) {
+                d[k] = 1;
+            } else {
+                d[k] = 0;
+            }
+
+            if (r > 1) {
+                r = r - d[k];
+            }
+
+            k++;
+
+            if (k == max) {break;}
+        }
+
+        var binaryNumber = '';
+
+        for (i = 1; i < d.length; i ++) {
+            binaryNumber += d[i];
+        }
+
+        document.getElementById('output_value').value = '0.'+binaryNumber;
+    }
+
+    function algorithm4(number)
+    {
+        number = number.replace(',','.');
+        var k = -1;
+        var fractional = number.substring(2, number.length)
+        var exp = 0;
+
+        for (var i = 0; i < fractional.length; i++) {
+
+            if (fractional[i] == 1) {
+                exp += (1 * (Math.pow(2, k)));
+            }
+
+            k = k - 1;
+        }
+
+        document.getElementById('output_value').value = exp;
+    }
+</script>
