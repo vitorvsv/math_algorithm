@@ -15,7 +15,7 @@
     </style>
     <script>
         function copy() {
-            // Copy to clipboard example
+            // Copy to clipboard
             document.querySelector("#copy-button");
             // Select the content
             document.querySelector("#output_value").select();
@@ -27,19 +27,19 @@
             var alg = document.getElementById('algorithm').value;
             var number = document.getElementById('input_value').value;
 
-            if (alg == 1) {
+            if (alg === '1') {
                 algorithm1(number);
             }
 
-            if (alg == 2) {
+            if (alg === '2') {
                 algorithm2(number);
             }
 
-            if (alg == 3) {
+            if (alg === '3') {
                 algorithm3(number);
             }
 
-            if (alg == 4) {
+            if (alg === '4') {
                 algorithm4(number);
             }
         }
@@ -57,7 +57,7 @@
             for (var i = 0; i <= j; i++) {
                 a[i] = parseInt(number[i]);
 
-                if (i == 0) {
+                if (i === 0) {
                     b[i] = a[i];
                 } else {
                     b[i] = (parseInt(a[i]) + (2 * b[i - 1]));
@@ -74,10 +74,10 @@
             var n;
             var k = 0;
 
-            while (q != 0) {
+            while (q !== 0) {
                 n = parseInt(q / 2);
 
-                if (n * 2 == q) {
+                if (n * 2 === q) {
                     r = 0;
                 } else {
                     r = 1;
@@ -85,7 +85,7 @@
 
                 a[k] = r;
 
-                if (q != 0) {
+                if (q !== 0) {
                     q = n;
                 }
 
@@ -108,7 +108,7 @@
             var d = [];
             var max = 10;
 
-            while (r != 1) {
+            while (r !== 1) {
                 r = (2 * r);
 
                 if (r >= 1) {
@@ -123,7 +123,7 @@
 
                 k++;
 
-                if (k == max) {
+                if (k === max) {
                     break;
                 }
             }
@@ -145,13 +145,12 @@
 
             for (var i = 0; i < fractional.length; i++) {
 
-                if (fractional[i] == 1) {
-                    exp += (1 * (Math.pow(2, k)));
+                if (fractional[i] === '1') {
+                    exp += ((Math.pow(2, k)));
                 }
 
                 k = k - 1;
             }
-
             document.getElementById('output_value').value = exp;
         }
     </script>
@@ -162,7 +161,7 @@
 <table class="cont">
     <tr>
         <td>
-            Selecione um algortimo:
+            Selecione um algoritmo:
         </td>
         <td>
             <select name="algorithm" id="algorithm">
@@ -178,7 +177,7 @@
             Valor de entrada:
         </td>
         <td>
-            <input type="text" name="input_value" id="input_value" />
+            <input type="text" name="input_value" id="input_value"/>
         </td>
     </tr>
     <tr>
@@ -186,14 +185,14 @@
             Valor de saída:
         </td>
         <td>
-            <input type="text" name="output_value" id="output_value">
+            <input type="text" name="output_value" id="output_value"/>
         </td>
     </tr>
 </table>
 <div class="comands">
-    <input class="comands" type="button" value="Calcular" onclick="calculate()" />
-    <input class="comands" type="button" value="Limpar" onclick="clearInputs()" />
-    <input class="comands" type="button" id="copy-button" onclick="copy()" value="Copiar resultado">
+    <input class="comands" type="button" value="Calcular" onclick="calculate()"/>
+    <input class="comands" type="button" value="Limpar" onclick="clearInputs()"/>
+    <input class="comands" type="button" value="Copiar resultado" onclick="copy()"/>
 </div>
 <footer class="end">
     <p>
@@ -202,5 +201,4 @@
     </p>
 </footer>
 </body>
-
 </html>
